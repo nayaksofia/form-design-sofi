@@ -1,48 +1,56 @@
 <div class="container mt-3">
-    <h4>{{message}}</h4>
+    <h4>{{ message }}</h4>
   
     <h1>Add User Information</h1>
 
-    <div class="form-group">
-      <label for="fname">First Name:</label>
-      <input id="fname" type="text" class="form-control" [(ngModel)]="FirstName"/>
-    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input id="fname" type="text" class="form-control" [(ngModel)]="FirstName" />
+            </div>
 
-    <div class="form-group">
-        <label for="lname">Last Name:</label>
-        <input id="lname" type="text" class="form-control" [(ngModel)]="LastName"/>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input id="lname" type="text" class="form-control" [(ngModel)]="LastName" />
+            </div>
+
+            <div class="form-group">
+                <label for="prefname">Preferred Name:</label>
+                <input id="prefname" type="text" class="form-control" [(ngModel)]="PreferredName" />
+            </div>
+
+            <div class="form-group">
+                <label for="pronoun">Pronoun:</label>
+                <input id="pronoun" type="text" class="form-control" [(ngModel)]="Pronouns" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email-work">Email Address (Work):</label>
+                <input id="email-work" type="text" class="form-control" [(ngModel)]="EmailAddressWork" />
+            </div>
+
+            <div class="form-group">
+                <label for="phonenumber">Phone Number:</label>
+                <input id="phonenumber" type="number" class="form-control" [(ngModel)]="PhoneNumber" />
+            </div>
+
+            <div class="form-group">
+                <label for="faxnum">Fax Number:</label>
+                <input id="faxnum" type="number" class="form-control" [(ngModel)]="FaxNumber" />
+            </div>
+
+            <div class="form-group">
+                <label for="dept">Department:</label>
+                <input id="dept" type="text" class="form-control" [(ngModel)]="Department" />
+            </div>
+        </div>
     </div>
   
-    <div class="form-group">
-        <label for="prefname">Preferred Name</label>
-        <input id="prefname" type="text" class="form-control" [(ngModel)]="PreferredName"/>
+    <div class="text-center">
+        <button class="btn btn-primary" (click)="addUser()">Save</button>
     </div>
-
-    <div class="form-group">
-        <label for="pronoun">Pronoun</label>
-        <input id="pronoun" type="text" class="form-control" [(ngModel)]="Pronouns"/>
-    </div>
-
-    <div class="form-group">
-        <label for="email-work">Email Address(Work)</label>
-        <input id="email-work" type="text" class="form-control" [(ngModel)]="EmailAddressWork"/>
-    </div>
-
-    <div class="form-group">
-        <label for="phonenumber">Phone Number</label>
-        <input id="phonenumber" type="number" class="form-control" [(ngModel)]="PhoneNumber"/>
-    </div>
-
-    <div class="form-group">
-        <label for="faxnum">Fax Number</label>
-        <input id="faxnum" type="number" class="form-control" [(ngModel)]="FaxNumber"/>
-    </div>
-
-    <div class="form-group">
-        <label for="dept">Departement</label>
-        <input id="dept" type="text" class="form-control" [(ngModel)]="Department"/>
-    </div>
-  
-    <button class="btn btn-primary" (click)="addUser()">Save</button>
-  </div>
-  
+    
+</div>

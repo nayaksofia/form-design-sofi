@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { response } from 'express';
+
 
 @Component({
   selector: 'app-add-user',
@@ -8,8 +8,9 @@ import { response } from 'express';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-
-  FirstName:string ='';
+ 
+  //Define properties to hold user information
+  FirstName: string ='';
   LastName: string ='';
   PreferredName : string='';
   Pronouns: string='';
@@ -19,7 +20,7 @@ export class AddUserComponent implements OnInit {
   Department: string='';
   message:string='';
 
-  //Create Object To HTTPClient
+  //Inject HttpClient in the constructor
   constructor(private http:HttpClient){}
 
 ngOnInit(): void {
@@ -27,7 +28,7 @@ ngOnInit(): void {
 }
 
 addUser(){
-  //Create a json object
+  //Create a json object containing user information
   const user={
     FirstName: this.FirstName,
     LastName: this.LastName,
@@ -40,10 +41,15 @@ addUser(){
 
   };
 
-  //Send to localhost 3000
+  //Send  a post request to the backend server, localhost 3000
   this.http.post('http://localhost:3000/addUser',user)
-  .subscribe((response:any)=>{this.message = response.message},
-  (error)=> {console.error('Error adding the user information',error);}
+  .subscribe(
+    (response:any)=>{ //Success Callback
+      this.message = response.message},
+  
+   (error)=> { //Error Callback
+    console.error('Error adding the user information',error);
+  }
   );
  }
 

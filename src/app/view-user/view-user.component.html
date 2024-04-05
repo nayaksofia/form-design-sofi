@@ -1,1 +1,38 @@
-<p>view-user works!</p>
+<!--New Format-->
+
+<div class="container mt-3">
+    <h3>{{message}}</h3>
+  
+    <h1>View User Infromations</h1>
+  
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Preferred Name</th>
+          <th>Pronouns</th>
+          <th>Email Address(Work)</th>
+          <th>Phone Number</th>
+          <th>Fax Number</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.Id}}</td>
+          <td>{{user.FirstName}}</td>
+          <td>{{user.LastName}}</td>
+          <td>{{user.PreferredName}}</td>
+          <td>{{user.Pronouns}}</td>
+          <td>{{user.EmailAddressWork}}</td>
+          <td>{{user.PhoneNumber}}</td>
+          <td>{{user.FaxNumber}}</td>
+          <td>{{user.Department}}</td>
+          <!-- <td><button class="btn btn-primary" routerLink="">Edit</button></td> -->
+          <!--<td><button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

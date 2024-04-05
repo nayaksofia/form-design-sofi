@@ -43,69 +43,56 @@ app.listen(port, ()=> {console.log('Server port established on 3000')})
 //To insert userinformation into database queen_db
 //endpoints
 
-app.post('/addUser',(req,res)=>{
+app.post('/addUser', (req, res) => {
+    // Extract user information from the request body
+    const { FirstName, LastName, PreferredName, Pronouns, EmailAddressWork, PhoneNumber, FaxNumber, Department } = req.body;
 
-    //Pass the data in the form of json
-    const{Id,FirstName,LastName,PreferredName,Pronouns,EmailAddressWork,PhoneNumber,FaxNumber,Department} = req.body;
+    // Write SQL Query
+    const sql = 'INSERT INTO userinformation (FirstName, LastName, PreferredName, Pronouns, EmailAddressWork, PhoneNumber, FaxNumber, Department) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
-    //Write SQL Query
-    const sql = 'insert into userinformation values(null,?,?,?,?,?,?,?,?)';
-
-    //Connect the database and access the query method
-    db.query(sql,[Id,FirstName,LastName,PreferredName,Pronouns,EmailAddressWork,PhoneNumber,FaxNumber,Department],(err,result)=>{
-        if(err){
-            console.error('Error in Adding The User Infromation', err);
-            res.status(500).json({error:'An error occured'});
-        }else{
-            res.status(200).json({message:'User Infromations Added Successfully'});
+    // Connect the database and execute the query
+    db.query(sql, [FirstName, LastName, PreferredName, Pronouns, EmailAddressWork, PhoneNumber, FaxNumber, Department], (err, result) => {
+        if (err) {
+            console.error('Error in Adding The User Information', err);
+            res.status(500).json({ error: 'An error occurred' });
+        } else {
+            res.status(200).json({ message: 'User Information Added Successfully' });
         }
     });
 
     // Close the connection
-    //  db.end();
+    // db.end();
+});
+//------------------------------------------view data (all)---------------------------
+app.get('/getUsers', (req, res) => {
+    // Write SQL Query
+    const sql = 'SELECT * FROM userinformation';
+
+    // Connect database and call the query method
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error in fetching the user information', err);
+            res.status(500).json({ error: 'An error occurred' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
 });
 
-//------------------------------------------View All List Of Data That Inserted------------------------------------------
 
- //To view list of users ---- To get all the users lists
-
- app.get('/getUsers',(req,res)=>{
-    
-    //Because it is a get operation, there is no data supply here.
-    //Write SQL Query
-    const sql = 'select * from userinformation';
-
-    //Connect database and call the query method
-    db.query(sql,(err,result)=>{
-     if(err){
-        console.error('Error in fetching the user informations',err);
-        res.status(500).jshon({error:'An error occured'});
-     }else{
-        res.status(200).json(result);//No message here 
-     }
-
-    });
-
- });
-
- //------------------------------------------View The List Of Data By ID------------------------------------------
-
-//To get User By Id
-app.get('/getUsers/:id',(req,res)=>{
+//-------------------------------------view data(by Id)------------------------------------
+app.get('/getUsers/:id', (req, res) => {
     const id = req.params.id;
-    //Define Query . [No data supply here]
-    const sql = 'select * from userinformation where id= ?';
-      
-     //Connect database and call the query method
-     db.query(sql,[id],(err,result)=>{
-        if(err){
-           console.error('Error in fetching the user informations by Id',err);
-           res.status(500).jshon({error:'An error occured'});
-        }else{
-           res.status(200).json(result);//No message here 
-        }
-   
-       });
-     
+    // Define Query . [No data supply here]
+    const sql = 'SELECT * FROM userinformation WHERE id = ?';
 
+    // Connect database and call the query method
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error('Error in fetching the user information by ID', err);
+            res.status(500).json({ error: 'An error occurred' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
 });
