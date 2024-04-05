@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <h4>{{ message }}</h4>
   
-    <h1>Add User Information</h1>
+    <h1>User Info</h1>
 
     <div class="row">
         <div class="col-md-6">
@@ -22,7 +22,11 @@
 
             <div class="form-group">
                 <label for="pronoun">Pronoun:</label>
-                <input id="pronoun" type="text" class="form-control" [(ngModel)]="Pronouns" />
+                <select id="pronoun" class="form-control" [(ngModel)]="Pronouns">
+                    <option value="he">He</option>
+                    <option value="she">She</option>
+                    <option value="she">Other</option>
+                </select>
             </div>
         </div>
 
@@ -44,7 +48,13 @@
 
             <div class="form-group">
                 <label for="dept">Department:</label>
-                <input id="dept" type="text" class="form-control" [(ngModel)]="Department" />
+                <select id="dept" class="form-control" [(ngModel)]="Department">
+                    <option value="cs">Computer Science</option>
+                    <option value="es">Electronics Science</option>
+                    <option value="ele">Electrical Science</option>
+                    <option value="esd">Embedded System Design</option>
+                    <option value="esd">Others</option>
+                </select>
             </div>
         </div>
     </div>
