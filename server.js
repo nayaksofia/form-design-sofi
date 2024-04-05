@@ -39,6 +39,7 @@ app.listen(port, ()=> {console.log('Server port established on 3000')})
 
 //Define API 
 
+//------------------------------------------Insert Data------------------------------------------------------
 //To insert userinformation into database queen_db
 //endpoints
 
@@ -59,5 +60,52 @@ app.post('/addUser',(req,res)=>{
             res.status(200).json({message:'User Infromation Added Successfully'});
         }
     });
+
+    // Close the connection
+    //  db.end();
 });
 
+//------------------------------------------View All List Of Data That Inserted------------------------------------------
+
+ //To view list of users ---- To get all the users lists
+
+ app.get('/getUsers',(req,res)=>{
+    
+    //Because it is a get operation, there is no data supply here.
+    //Write SQL Query
+    const sql = 'select * from userinformation';
+
+    //Connect database and call the query method
+    db.query(sql,(err,result)=>{
+     if(err){
+        console.error('Error in fetching the user informations',err);
+        res.status(500).jshon({error:'An error occured'});
+     }else{
+        res.status(200).json(result);//No message here 
+     }
+
+    });
+
+ });
+
+ //------------------------------------------View The List Of Data By ID------------------------------------------
+
+//To get User By Id
+app.get('/getUsers/:id',(req,res)=>{
+    const id = req.params.id;
+    //Define Query . [No data supply here]
+    const sql = 'select * from userinformation where id= ?';
+      
+     //Connect database and call the query method
+     db.query(sql,[id],(err,result)=>{
+        if(err){
+           console.error('Error in fetching the user informations by Id',err);
+           res.status(500).jshon({error:'An error occured'});
+        }else{
+           res.status(200).json(result);//No message here 
+        }
+   
+       });
+     
+
+});
