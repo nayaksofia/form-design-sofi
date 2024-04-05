@@ -57,7 +57,7 @@ app.post('/addUser',(req,res)=>{
             console.error('Error in Adding The User Infromation', err);
             res.status(500).json({error:'An error occured'});
         }else{
-            res.status(200).json({message:'User Infromation Added Successfully'});
+            res.status(200).json({message:'User Infromations Added Successfully'});
         }
     });
 
